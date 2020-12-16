@@ -1,0 +1,32 @@
+Sınıf Çalışması: Aşağıda açıklanan komut yorumlayıcı programı yazınız:
+    * Komut yorumlayıcı programa ilişkin sınıf bir jar içerisinde olacaktır ve çalıştıran program bu jar dosyasını
+    kullanan program olacaktır
+
+    * Komut yorumlayıcı programda generate isimli bir komut aşağıdaki gibi çalıştırılabilecektir.
+        generate 10 15
+
+      Burada 10 sayısı 15 karakter olarak üretilecek yazının sayısıdır. Yazılar bir ArrayList' e atılacaktır.
+
+    * list isimli bir komut ile ArrayList'e eklenen tüm yazılar görüntülenebilecektir.
+
+    * clear isimli komut ArrayList' clear edecektir
+
+    * list isimli komut örneğin
+        list 10 
+
+    biçiminde çalıştırılırsa tüm 10 karakterden oluşan yazıları listeyecektir.
+
+    * quit komutu programdan çıkışı sağlayacaktır.
+
+    * generate ve list komutlarına ilişkin sınıflar ayrı kütüphanelerde olacaktır.
+
+    * generate komutu
+        generate p 1 10 15 
+    biçiminde kullanılırsa her 1 saniyede bir toplam 10 tane 15 karakterli yazıyı üretip ekrana basacaktır. Bu şekilde
+    kullanımda ArrayList'e ekleme yapılmayacaktır. 
+
+    * Komut yorumlayıcı programda csd şeklinde bir prompt verilecektir
+
+    * Sınıfta yapılacak uygulamada üretilen yazılar zamanlarıyla birlikte ArrayList içerisinde tutulacaktır
+
+    - Bu uygulama konular ilerledikçe daha kolay yazılabilir hale gelecektir
