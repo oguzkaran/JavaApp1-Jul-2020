@@ -1,8 +1,6 @@
 ﻿Link			: https://www.dropbox.com/sh/gx1tafe22kxss4c/AAAM74qH0rqm2sfn9_SkSZPha?dl=0
 Kısa Link		: http://bit.do/javaapp1-jul-2020
-Zoom ID			: 82553850014
-Şifre           : 461241
-
+Github          : https://github.com/oguzkaran/JavaApp1-Jul-2020
 
 
 
