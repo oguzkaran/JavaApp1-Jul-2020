@@ -33,7 +33,5 @@ public class ApplicationRunnerRandomGeneratorConfig {
             IntStream.generate(() -> m_random.nextInt(m_max - m_min) + m_min).limit(m_count).forEach(val -> System.out.printf("%d ", val));
             System.out.println();
         };
-
-
     }
 }
