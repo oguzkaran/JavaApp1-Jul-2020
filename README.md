@@ -1,6 +1,5 @@
 # JavaApp1-Jul-2020
-Kaynak göstermek koşuluyla her türlü alıntı yapılabilir
-
+KAYNAK GÖSTERMEK KOŞULUYLA HER TÜRLÜ ALINTI YAPILABİLİR
 
 #java
 #programming
