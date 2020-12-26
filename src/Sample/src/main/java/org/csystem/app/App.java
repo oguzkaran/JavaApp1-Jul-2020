@@ -9,9 +9,7 @@ package org.csystem.app;
 class App {
     public static void main(String[] args)
     {
-        boolean result = Boolean.parseBoolean("ali");
 
-        System.out.printf("result=%b%n", result);
     }
 }
 
