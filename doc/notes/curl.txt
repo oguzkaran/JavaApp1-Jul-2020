@@ -1,0 +1,7 @@
+curl -d '{"name":"Lokman", "date":"2020-07-26", "total":"3499"}' -H "Content-Type: application/json" -X POST http://192.168.1.149:60600/invoices/save
+
+
+curl -H 'Accept: application/json' -H "Authorization: Bearer ${TOKEN}" http://localhost:8080/hello
+
+
+JWT Token does not begin with Bearer String
