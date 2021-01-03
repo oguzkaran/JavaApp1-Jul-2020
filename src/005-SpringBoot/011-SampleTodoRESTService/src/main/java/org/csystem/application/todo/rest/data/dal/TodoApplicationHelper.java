@@ -4,6 +4,7 @@ import org.csystem.application.todo.rest.data.entity.TodoInfo;
 import org.csystem.application.todo.rest.data.entity.UserInfo;
 import org.csystem.application.todo.rest.data.repository.ITodoInfoRepository;
 import org.csystem.application.todo.rest.data.repository.IUserInfoRepository;
+import org.csystem.util.data.repository.RepositoryException;
 import org.springframework.stereotype.Component;
 
 import java.util.Optional;
@@ -19,40 +20,75 @@ public class TodoApplicationHelper {
         m_userInfoRepository = userInfoRepository;
     }
 
-
-
     public Iterable<TodoInfo> findAllTodos()
     {
-        //...
-        return m_todoInfoRepository.findAll();
+        try {
+            return m_todoInfoRepository.findAll();
+        }
+        catch (Throwable ex) {
+            //...
+            throw new RepositoryException("TodoApplicationHelper.findAllTodos", ex);
+        }
     }
 
-    public Iterable<TodoInfo> findByMonth(int month)
+    public Iterable<TodoInfo> findTodosByMonth(int month)
     {
-        //...
-        return m_todoInfoRepository.findByMonth(month);
+        try {
+            return m_todoInfoRepository.findByMonth(month);
+        }
+        catch (Throwable ex) {
+            //...
+            throw new RepositoryException("TodoApplicationHelper.findTodosByMonth", ex);
+        }
+    }
+
+    public Iterable<TodoInfo> findTodosByMonthsBetween(int start, int end)
+    {
+        try {
+            return m_todoInfoRepository.findByMonthsBetween(start, end);
+        }
+        catch (Throwable ex) {
+            //...
+            throw new RepositoryException("TodoApplicationHelper.findTodosByMonthsBetween", ex);
+        }
     }
 
     public boolean exitsTodoById(long id)
     {
-        return m_todoInfoRepository.exitsById(id);
+        return findTodoById(id).isPresent();
     }
 
     public Optional<TodoInfo> findTodoById(long id)
     {
-        return m_todoInfoRepository.findById(id);
+        try {
+            return m_todoInfoRepository.findById(id);
+        }
+        catch (Throwable ex) {
+            //...
+            throw new RepositoryException("TodoApplicationHelper.findTodById", ex);
+        }
     }
 
     public TodoInfo saveTodoInfo(TodoInfo todoInfo)
     {
-        //...
-        return m_todoInfoRepository.save(todoInfo);
+        try {
+            return m_todoInfoRepository.save(todoInfo);
+        }
+        catch (Throwable ex) {
+            //...
+            throw new RepositoryException("TodoApplicationHelper.saveTodoInfo", ex);
+        }
     }
 
     public UserInfo saveUserInfo(UserInfo userInfo)
     {
-        //...
-        return m_userInfoRepository.save(userInfo);
+        try {
+            return m_userInfoRepository.save(userInfo);
+        }
+        catch (Throwable ex) {
+            //...
+            throw new RepositoryException("TodoApplicationHelper.saveUserInfo", ex);
+        }
     }
 
     //...

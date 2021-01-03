@@ -2,6 +2,7 @@ package org.csystem.application.todo.rest.controller;
 
 import org.csystem.application.todo.rest.dto.TodoInfoDTO;
 import org.csystem.application.todo.rest.service.ITodoApplicationService;
+import org.csystem.util.data.service.DataServiceException;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.ArrayList;
@@ -22,10 +23,36 @@ public class TodoInfoController {
         return m_todoApplicationService.findAllTodos();
     }
 
-    @GetMapping("/start")
-    public Iterable<TodoInfoDTO> findByMonth(@RequestParam(value = "mon", required = false, defaultValue = "1") int month)
+    @GetMapping("/start/month")
+    public Iterable<TodoInfoDTO> findByMonth(int month)
     {
-        return m_todoApplicationService.findTodosByMonth(month);
+        try {
+            return m_todoApplicationService.findTodosByMonth(month);
+        }
+        catch (DataServiceException ex) {
+            //...
+            throw ex;
+        }
+    }
+
+    @GetMapping("/start/months")
+    public Iterable<TodoInfoDTO> findByMonthsBetween(
+            @RequestParam(value = "start", required = false, defaultValue = "-1") int start,
+            @RequestParam(value = "end", required = false, defaultValue = "-1") int end)
+    {
+        try {
+            if (start <= 0 || start > 12)
+                start = 1;
+
+            if (end <= 0 || end > 12)
+                end = 12;
+
+            return m_todoApplicationService.findTodosByMonthsBetween(start, end);
+        }
+        catch (DataServiceException ex) {
+            //...
+            throw ex;
+        }
     }
 
     @GetMapping("/starts")
@@ -34,7 +61,7 @@ public class TodoInfoController {
         try {
             return m_todoApplicationService.findTodosByMonth(Integer.parseInt(month));
         }
-        catch (NumberFormatException ignore) {
+        catch (NumberFormatException|DataServiceException ignore) {
             return new ArrayList<>();
         }
     }
@@ -42,6 +69,12 @@ public class TodoInfoController {
     @PostMapping("/save")
     public TodoInfoDTO saveTodoInfoDTO(@RequestBody TodoInfoDTO todoInfoDTO)
     {
-        return m_todoApplicationService.saveTodo(todoInfoDTO);
+        try {
+            return m_todoApplicationService.saveTodo(todoInfoDTO);
+        }
+        catch (DataServiceException ex) {
+            //..
+            throw ex;
+        }
     }
 }

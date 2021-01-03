@@ -37,6 +37,17 @@ public class TodoInfoRepository implements ITodoInfoRepository {
     }
 
     @Override
+    public Iterable<TodoInfo> findByMonthsBetween(int start, int end)
+    {
+        if (start > end)
+            throw new IllegalArgumentException("Illegal Arguments");
+
+        return ms_todoInfos.stream()
+                .filter(td -> start <= td.getStartDate().getMonthValue() && td.getStartDate().getMonthValue() < end)
+                .collect(Collectors.toList());
+    }
+
+    @Override
     public <S extends TodoInfo> S save(S entity)
     {
         entity.setId(ms_curIndex++);

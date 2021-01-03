@@ -8,5 +8,6 @@ public interface ITodoApplicationService {
     TodoInfoDTO saveTodo(TodoInfoDTO todoInfoDTO);
     Iterable<TodoInfoDTO> findAllTodos();
     Iterable<TodoInfoDTO> findTodosByMonth(int month);
+    Iterable<TodoInfoDTO> findTodosByMonthsBetween(int start, int end);
     Optional<TodoInfoDTO> findTodoById(long id);
 }
