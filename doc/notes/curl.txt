@@ -1,7 +1,9 @@
-curl -d '{"name":"Lokman", "date":"2020-07-26", "total":"3499"}' -H "Content-Type: application/json" -X POST http://192.168.1.149:60600/invoices/save
+curl -d '{"username":"oguzkaran", "startDate":"2021-02-25", "expectedEndDate":"2021-03-02", "title":"Terapi Kulubu", "description":"Terapi kulubu cache"}' -H "Content-Type: application/json" -X POST http://192.168.1.167:8080/api/todos/save
+curl -d '{"username":"kaanaslan", "startDate":"2021-03-25", "expectedEndDate":"2021-04-02", "title":"Terapi Kulubu", "description":"Terapi kulubu mobil"}' -H "Content-Type: application/json" -X POST http://192.168.1.167:8080/api/todos/save
+curl -d '{"username":"cihankaraca", "startDate":"2021-03-25", "expectedEndDate":"2021-04-02", "title":"Terapi Kulubu veritabanı normalizasyonu", "description":"Terapi kulubu mobil"}' -H "Content-Type: application/json" -X POST http://192.168.1.167:8080/api/todos/save
+
 
 
 curl -H 'Accept: application/json' -H "Authorization: Bearer ${TOKEN}" http://localhost:8080/hello
-
 
 JWT Token does not begin with Bearer String
