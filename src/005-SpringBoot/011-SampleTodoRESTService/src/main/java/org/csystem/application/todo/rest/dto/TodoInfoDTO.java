@@ -1,5 +1,6 @@
 package org.csystem.application.todo.rest.dto;
 
+import java.time.LocalDate;
 import java.time.LocalDateTime;
 
 public class TodoInfoDTO {
@@ -7,15 +8,15 @@ public class TodoInfoDTO {
     private String m_username;
     private String m_title;
     private String m_description;
-    private LocalDateTime m_startDate;
-    private LocalDateTime m_expectedEndDate;
-    private LocalDateTime m_endDate;
+    private LocalDate m_startDate;
+    private LocalDate m_expectedEndDate;
+    private LocalDate m_endDate;
     private boolean m_isCompleted;
 
     public TodoInfoDTO()
     {}
 
-    public TodoInfoDTO(long id, String username, String title, String description, LocalDateTime startDate, LocalDateTime expectedEndDate, LocalDateTime endDate, boolean isCompleted)
+    public TodoInfoDTO(long id, String username, String title, String description, LocalDate startDate, LocalDate expectedEndDate, LocalDate endDate, boolean isCompleted)
     {
         m_id = id;
         m_username = username;
@@ -67,32 +68,32 @@ public class TodoInfoDTO {
         m_description = description;
     }
 
-    public LocalDateTime getStartDate()
+    public LocalDate getStartDate()
     {
         return m_startDate;
     }
 
-    public void setStartDate(LocalDateTime startDate)
+    public void setStartDate(LocalDate startDate)
     {
         m_startDate = startDate;
     }
 
-    public LocalDateTime getExpectedEndDate()
+    public LocalDate getExpectedEndDate()
     {
         return m_expectedEndDate;
     }
 
-    public void setExpectedEndDate(LocalDateTime expectedEndDate)
+    public void setExpectedEndDate(LocalDate expectedEndDate)
     {
         m_expectedEndDate = expectedEndDate;
     }
 
-    public LocalDateTime getEndDate()
+    public LocalDate getEndDate()
     {
         return m_endDate;
     }
 
-    public void setEndDate(LocalDateTime endDate)
+    public void setEndDate(LocalDate endDate)
     {
         m_endDate = endDate;
     }

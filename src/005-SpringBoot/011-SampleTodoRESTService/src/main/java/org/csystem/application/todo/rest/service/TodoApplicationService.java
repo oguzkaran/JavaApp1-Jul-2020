@@ -45,5 +45,13 @@ public class TodoApplicationService implements ITodoApplicationService {
         return m_todoApplicationHelper.findTodoById(id).map(m_todoInfoConverter::todoInfoToTodoInfoDTO);
     }
 
+    @Override
+    public Iterable<TodoInfoDTO> findTodosByMonth(int month)
+    {
+        return StreamSupport.stream(m_todoApplicationHelper.findByMonth(month).spliterator(), false)
+                .map(m_todoInfoConverter::todoInfoToTodoInfoDTO)
+                .collect(Collectors.toList());
+    }
+
     //...
 }

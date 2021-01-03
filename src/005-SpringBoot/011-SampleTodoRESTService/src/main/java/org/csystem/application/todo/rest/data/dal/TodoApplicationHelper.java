@@ -19,10 +19,18 @@ public class TodoApplicationHelper {
         m_userInfoRepository = userInfoRepository;
     }
 
+
+
     public Iterable<TodoInfo> findAllTodos()
     {
         //...
         return m_todoInfoRepository.findAll();
+    }
+
+    public Iterable<TodoInfo> findByMonth(int month)
+    {
+        //...
+        return m_todoInfoRepository.findByMonth(month);
     }
 
     public boolean exitsTodoById(long id)

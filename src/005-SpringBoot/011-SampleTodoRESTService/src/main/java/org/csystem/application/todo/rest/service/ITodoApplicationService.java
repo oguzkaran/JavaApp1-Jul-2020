@@ -7,5 +7,6 @@ import java.util.Optional;
 public interface ITodoApplicationService {
     TodoInfoDTO saveTodo(TodoInfoDTO todoInfoDTO);
     Iterable<TodoInfoDTO> findAllTodos();
+    Iterable<TodoInfoDTO> findTodosByMonth(int month);
     Optional<TodoInfoDTO> findTodoById(long id);
 }

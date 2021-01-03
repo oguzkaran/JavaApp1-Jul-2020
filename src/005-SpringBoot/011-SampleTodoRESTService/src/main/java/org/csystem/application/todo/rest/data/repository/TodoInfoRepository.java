@@ -5,6 +5,7 @@ import org.springframework.stereotype.Repository;
 
 import java.util.Optional;
 import java.util.Vector;
+import java.util.stream.Collectors;
 
 @Repository
 public class TodoInfoRepository implements ITodoInfoRepository {
@@ -27,6 +28,12 @@ public class TodoInfoRepository implements ITodoInfoRepository {
     public Optional<TodoInfo> findById(Long id)
     {
         return ms_todoInfos.stream().filter(td -> td.getId() == id).findFirst();
+    }
+
+    @Override
+    public Iterable<TodoInfo> findByMonth(int month)
+    {
+        return ms_todoInfos.stream().filter(td -> td.getStartDate().getMonthValue() == month).collect(Collectors.toList());
     }
 
     @Override

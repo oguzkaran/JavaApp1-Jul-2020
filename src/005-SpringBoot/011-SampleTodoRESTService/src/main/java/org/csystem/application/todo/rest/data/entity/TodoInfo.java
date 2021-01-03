@@ -1,5 +1,6 @@
 package org.csystem.application.todo.rest.data.entity;
 
+import java.time.LocalDate;
 import java.time.LocalDateTime;
 
 public class TodoInfo {
@@ -7,22 +8,22 @@ public class TodoInfo {
     private String m_username;
     private String m_title;
     private String m_description;
-    private final LocalDateTime m_insertDate = LocalDateTime.now();
-    private LocalDateTime m_startDate;
-    private LocalDateTime m_expectedEndDate;
-    private LocalDateTime m_endDate;
+    private final LocalDate m_insertDate = LocalDate.now();
+    private LocalDate m_startDate;
+    private LocalDate m_expectedEndDate;
+    private LocalDate m_endDate;
     private boolean m_isCompleted;
 
     public TodoInfo()
     {
     }
 
-    public TodoInfo(String title, String username, String description, LocalDateTime startDate, LocalDateTime expectedEndDate, LocalDateTime endDate, boolean isCompleted)
+    public TodoInfo(String title, String username, String description, LocalDate startDate, LocalDate expectedEndDate, LocalDate endDate, boolean isCompleted)
     {
         this(0, title, username, description, startDate, expectedEndDate, endDate, false);
     }
 
-    public TodoInfo(long id, String title, String username, String description, LocalDateTime startDate, LocalDateTime expectedEndDate, LocalDateTime endDate, boolean isCompleted)
+    public TodoInfo(long id, String title, String username, String description, LocalDate startDate, LocalDate expectedEndDate, LocalDate endDate, boolean isCompleted)
     {
         m_id = id;
         m_title = title;
@@ -74,39 +75,39 @@ public class TodoInfo {
         m_description = description;
     }
 
-    public LocalDateTime getInsertDate()
+    public LocalDate getInsertDate()
     {
         return m_insertDate;
     }
 
 
 
-    public LocalDateTime getStartDate()
+    public LocalDate getStartDate()
     {
         return m_startDate;
     }
 
-    public void setStartDate(LocalDateTime startDate)
+    public void setStartDate(LocalDate startDate)
     {
         m_startDate = startDate;
     }
 
-    public LocalDateTime getExpectedEndDate()
+    public LocalDate getExpectedEndDate()
     {
         return m_expectedEndDate;
     }
 
-    public void setExpectedEndDate(LocalDateTime expectedEndDate)
+    public void setExpectedEndDate(LocalDate expectedEndDate)
     {
         m_expectedEndDate = expectedEndDate;
     }
 
-    public LocalDateTime getEndDate()
+    public LocalDate getEndDate()
     {
         return m_endDate;
     }
 
-    public void setEndDate(LocalDateTime endDate)
+    public void setEndDate(LocalDate endDate)
     {
         m_endDate = endDate;
     }
