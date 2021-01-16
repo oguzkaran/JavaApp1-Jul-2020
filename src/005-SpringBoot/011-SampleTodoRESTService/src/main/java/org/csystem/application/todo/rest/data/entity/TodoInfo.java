@@ -1,7 +1,6 @@
 package org.csystem.application.todo.rest.data.entity;
 
 import java.time.LocalDate;
-import java.time.LocalDateTime;
 
 public class TodoInfo {
     private long m_id;
@@ -12,18 +11,18 @@ public class TodoInfo {
     private LocalDate m_startDate;
     private LocalDate m_expectedEndDate;
     private LocalDate m_endDate;
-    private boolean m_isCompleted;
+    private boolean m_completed;
 
     public TodoInfo()
     {
     }
 
-    public TodoInfo(String title, String username, String description, LocalDate startDate, LocalDate expectedEndDate, LocalDate endDate, boolean isCompleted)
+    public TodoInfo(String title, String username, String description, LocalDate startDate, LocalDate expectedEndDate, LocalDate endDate, boolean completed)
     {
         this(0, title, username, description, startDate, expectedEndDate, endDate, false);
     }
 
-    public TodoInfo(long id, String title, String username, String description, LocalDate startDate, LocalDate expectedEndDate, LocalDate endDate, boolean isCompleted)
+    public TodoInfo(long id, String title, String username, String description, LocalDate startDate, LocalDate expectedEndDate, LocalDate endDate, boolean completed)
     {
         m_id = id;
         m_title = title;
@@ -32,7 +31,7 @@ public class TodoInfo {
         m_startDate = startDate;
         m_expectedEndDate = expectedEndDate;
         m_endDate = endDate;
-        m_isCompleted = isCompleted;
+        m_completed = completed;
     }
 
     public long getId()
@@ -114,11 +113,11 @@ public class TodoInfo {
 
     public boolean isCompleted()
     {
-        return m_isCompleted;
+        return m_completed;
     }
 
     public void setCompleted(boolean completed)
     {
-        m_isCompleted = completed;
+        m_completed = completed;
     }
 }
