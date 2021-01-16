@@ -38,6 +38,19 @@ public class TodoApplicationService implements ITodoApplicationService {
     }
 
     @Override
+    public Optional<TodoInfoDTO> findById(long id)
+    {
+        try {
+            return m_todoApplicationHelper.findById(id)
+                    .map(m_todoInfoConverter::todoInfoToTodoInfoDTO);
+        }
+        catch (RepositoryException ex) {
+            //...
+            throw new DataServiceException("TodoApplicationService.findById", ex.getCause());
+        }
+    }
+
+    @Override
     public Iterable<TodoInfoDTO> findAllTodos()
     {
         try {

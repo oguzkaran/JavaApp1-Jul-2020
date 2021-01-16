@@ -7,7 +7,7 @@ public class TodoInfo {
     private String m_username;
     private String m_title;
     private String m_description;
-    private final LocalDate m_insertDate = LocalDate.now();
+    private LocalDate m_insertDate = LocalDate.now();
     private LocalDate m_startDate;
     private LocalDate m_expectedEndDate;
     private LocalDate m_endDate;
@@ -20,6 +20,19 @@ public class TodoInfo {
     public TodoInfo(String title, String username, String description, LocalDate startDate, LocalDate expectedEndDate, LocalDate endDate, boolean completed)
     {
         this(0, title, username, description, startDate, expectedEndDate, endDate, false);
+    }
+
+    public TodoInfo(long id, String title, String username, String description, LocalDate startDate, LocalDate insertDate, LocalDate expectedEndDate, LocalDate endDate, boolean completed)
+    {
+        m_id = id;
+        m_title = title;
+        m_username = username;
+        m_description = description;
+        m_startDate = startDate;
+        m_insertDate = insertDate;
+        m_expectedEndDate = expectedEndDate;
+        m_endDate = endDate;
+        m_completed = completed;
     }
 
     public TodoInfo(long id, String title, String username, String description, LocalDate startDate, LocalDate expectedEndDate, LocalDate endDate, boolean completed)
@@ -79,7 +92,10 @@ public class TodoInfo {
         return m_insertDate;
     }
 
-
+    public void setInsertDate(LocalDate insertDate)
+    {
+        m_insertDate = insertDate;
+    }
 
     public LocalDate getStartDate()
     {

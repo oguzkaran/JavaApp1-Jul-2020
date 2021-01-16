@@ -20,6 +20,17 @@ public class TodoApplicationHelper {
         m_userInfoRepository = userInfoRepository;
     }
 
+    public Optional<TodoInfo> findById(long id)
+    {
+        try {
+            return m_todoInfoRepository.findById(id);
+        }
+        catch (Throwable ex) {
+            //...
+            throw new RepositoryException("TodoApplicationHelper.findById", ex);
+        }
+    }
+
     public Iterable<TodoInfo> findAllTodos()
     {
         try {

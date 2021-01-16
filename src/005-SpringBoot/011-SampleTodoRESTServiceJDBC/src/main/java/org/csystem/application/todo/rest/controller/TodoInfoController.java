@@ -6,6 +6,7 @@ import org.csystem.util.data.service.DataServiceException;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.ArrayList;
+import java.util.Optional;
 
 @RestController
 @RequestMapping("api/todos")
@@ -21,6 +22,12 @@ public class TodoInfoController {
     public Iterable<TodoInfoDTO> findAllTodos() // Veri çok fazlaysa bu şekilde almak doğru değildir. Sadece örnek olarak gösterilmiştir.
     {
         return m_todoApplicationService.findAllTodos();
+    }
+
+    @GetMapping("/ids")
+    public TodoInfoDTO findById(@RequestParam("id") long id)
+    {
+        return m_todoApplicationService.findById(id).orElse(new TodoInfoDTO());
     }
 
     @GetMapping("/start/month")
