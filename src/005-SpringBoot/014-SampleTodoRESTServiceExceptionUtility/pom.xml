@@ -65,7 +65,7 @@
 		<dependency>
 			<groupId>org.csystem</groupId>
 			<artifactId>org-csystem-util-exception</artifactId>
-			<version>2.0.1</version>
+			<version>1.0.0</version>
 		</dependency>
 
 		<dependency>
