@@ -23,17 +23,14 @@ public class TodoApplicationService implements ITodoApplicationService {
     }
 
     @Override
-    public TodoInfoDTO saveTodo(TodoInfoDTO todoInfoDTO)
+    public long countTodos()
     {
         try {
-            var todoInfo = m_todoInfoConverter.todoInfoDTOToTodoInfo(todoInfoDTO);
-            m_todoApplicationHelper.saveTodoInfo(todoInfo);
-            //...
-            return m_todoInfoConverter.todoInfoToTodoInfoDTO(todoInfo);
+            return m_todoApplicationHelper.countTodos();
         }
         catch (RepositoryException ex) {
             //...
-            throw new DataServiceException("TodoApplicationService.saveTodo", ex.getCause());
+            throw new DataServiceException("TodoApplicationService.countTodos", ex.getCause());
         }
     }
 
@@ -103,6 +100,21 @@ public class TodoApplicationService implements ITodoApplicationService {
         catch (RepositoryException ex) {
             //...
             throw new DataServiceException("TodoApplicationService.findTodosByMonthsBetween", ex.getCause());
+        }
+    }
+
+    @Override
+    public TodoInfoDTO saveTodo(TodoInfoDTO todoInfoDTO)
+    {
+        try {
+            var todoInfo = m_todoInfoConverter.todoInfoDTOToTodoInfo(todoInfoDTO);
+            m_todoApplicationHelper.saveTodoInfo(todoInfo);
+            //...
+            return m_todoInfoConverter.todoInfoToTodoInfoDTO(todoInfo);
+        }
+        catch (RepositoryException ex) {
+            //...
+            throw new DataServiceException("TodoApplicationService.saveTodo", ex.getCause());
         }
     }
 
