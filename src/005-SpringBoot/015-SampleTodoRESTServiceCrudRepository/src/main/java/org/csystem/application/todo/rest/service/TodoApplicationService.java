@@ -1,6 +1,7 @@
 package org.csystem.application.todo.rest.service;
 
 import org.csystem.application.todo.rest.data.dal.TodoApplicationHelper;
+import org.csystem.application.todo.rest.data.entity.ClientRequestInfo;
 import org.csystem.application.todo.rest.data.entity.TodoInfo;
 import org.csystem.application.todo.rest.dto.TodoInfoDTO;
 import org.csystem.application.todo.rest.mapper.ITodoInfoMapper;
@@ -45,16 +46,34 @@ public class TodoApplicationService implements ITodoApplicationService {
     }
 
     @Override
-    public Optional<TodoInfoDTO> findById(long id)
-    {
-        return doWorkForService(() -> m_todoApplicationHelper.findById(id).map(m_todoInfoMapper::todoInfoToTodoInfoDTO),
-                "TodoApplicationService.findById");
-    }
-
-    @Override
     public Iterable<TodoInfoDTO> findAllTodos()
     {
         return doWorkForService(() -> getTodoInfoDTO(m_todoApplicationHelper::findAllTodos), "TodoApplicationService.findAllTodos");
+    }
+
+    @Override
+    public Iterable<TodoInfoDTO> findTodosByCompleted(boolean completed)
+    {
+        return doWorkForService(() -> getTodoInfoDTO(() -> m_todoApplicationHelper.findTodosByCompleted(completed)), "TodoApplicationService.findTodosByCompleted");
+    }
+
+    @Override
+    public Iterable<TodoInfoDTO> findCompletedTodos()
+    {
+        return doWorkForService(() -> getTodoInfoDTO(m_todoApplicationHelper::findCompletedTodos), "TodoApplicationService.findCompletedTodos");
+    }
+
+    @Override
+    public Iterable<TodoInfoDTO> findNotCompletedTodos()
+    {
+        return doWorkForService(() -> getTodoInfoDTO(m_todoApplicationHelper::findNotCompletedTodos), "TodoApplicationService.findNotCompletedTodos");
+    }
+
+    @Override
+    public Optional<TodoInfoDTO> findById(long id)
+    {
+        return doWorkForService(() -> m_todoApplicationHelper.findTodoById(id).map(m_todoInfoMapper::todoInfoToTodoInfoDTO),
+                "TodoApplicationService.findById");
     }
 
     @Override
@@ -79,6 +98,12 @@ public class TodoApplicationService implements ITodoApplicationService {
     public TodoInfoDTO saveTodo(TodoInfoDTO todoInfoDTO)
     {
         return doWorkForService(() ->saveTodoProc(todoInfoDTO), "TodoApplicationService.saveTodo");
+    }
+
+    @Override
+    public ClientRequestInfo saveClientRequestInfo(ClientRequestInfo clientRequestInfo)
+    {
+        return doWorkForService(() ->m_todoApplicationHelper.saveClientRequestInfo(clientRequestInfo), "TodoApplicationService.saveClientRequestInfo");
     }
     //...
 }

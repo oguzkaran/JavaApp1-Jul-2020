@@ -1,16 +1,39 @@
 package org.csystem.application.todo.rest.data.entity;
 
+import javax.persistence.*;
 import java.time.LocalDate;
 
+
+@Entity
+@Table(name = "todos")
 public class TodoInfo {
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(name = "todo_id")
     private long m_id;
+
+    @Column(name = "username", nullable = false)
     private String m_username;
+
+    @Column(name = "title", nullable = false)
     private String m_title;
+
+    @Column(name = "description", nullable = false)
     private String m_description;
+
+    @Column(name = "insert_date", nullable = false)
     private LocalDate m_insertDate = LocalDate.now();
+
+    @Column(name = "start_date", nullable = false)
     private LocalDate m_startDate;
+
+    @Column(name = "expected_end_date", nullable = false)
     private LocalDate m_expectedEndDate;
+
+    @Column(name = "end_date")
     private LocalDate m_endDate;
+
+    @Column(name = "completed", nullable = false)
     private boolean m_completed;
 
     public TodoInfo()
@@ -126,6 +149,7 @@ public class TodoInfo {
     {
         m_endDate = endDate;
     }
+
 
     public boolean isCompleted()
     {

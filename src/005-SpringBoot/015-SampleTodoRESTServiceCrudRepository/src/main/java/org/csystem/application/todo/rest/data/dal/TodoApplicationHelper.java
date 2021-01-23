@@ -1,9 +1,9 @@
 package org.csystem.application.todo.rest.data.dal;
 
+import org.csystem.application.todo.rest.data.entity.ClientRequestInfo;
 import org.csystem.application.todo.rest.data.entity.TodoInfo;
-import org.csystem.application.todo.rest.data.entity.UserInfo;
+import org.csystem.application.todo.rest.data.repository.IClientRequestInfoRepository;
 import org.csystem.application.todo.rest.data.repository.ITodoInfoRepository;
-import org.csystem.application.todo.rest.data.repository.IUserInfoRepository;
 import org.springframework.stereotype.Component;
 
 import java.util.Optional;
@@ -13,12 +13,12 @@ import static org.csystem.util.data.DatabaseUtil.doWorkForRepository;
 @Component
 public class TodoApplicationHelper {
     private final ITodoInfoRepository m_todoInfoRepository;
-    private final IUserInfoRepository m_userInfoRepository; //Örnek olması açısından eklendi
+    private final IClientRequestInfoRepository m_clientRequestInfoRepository;
 
-    public TodoApplicationHelper(ITodoInfoRepository todoInfoRepository, IUserInfoRepository userInfoRepository)
+    public TodoApplicationHelper(ITodoInfoRepository todoInfoRepository, IClientRequestInfoRepository clientRequestInfoRepository)
     {
         m_todoInfoRepository = todoInfoRepository;
-        m_userInfoRepository = userInfoRepository;
+        m_clientRequestInfoRepository = clientRequestInfoRepository;
     }
 
     public long countTodos()
@@ -26,14 +26,29 @@ public class TodoApplicationHelper {
         return doWorkForRepository(m_todoInfoRepository::count, "TodoApplicationHelper.countTodos");
     }
 
-    public Optional<TodoInfo> findById(long id)
+    public Iterable<TodoInfo> findAllTodos()
+    {
+        return doWorkForRepository(m_todoInfoRepository::findAll, "TodoApplicationHelper.findAllTodos");
+    }
+
+    public Optional<TodoInfo> findTodoById(long id)
     {
         return doWorkForRepository(() ->  m_todoInfoRepository.findById(id), ex -> System.err.println(ex.getMessage()), "TodoApplicationHelper.findById");
     }
 
-    public Iterable<TodoInfo> findAllTodos()
+    public Iterable<TodoInfo> findTodosByCompleted(boolean completed)
     {
-        return doWorkForRepository(m_todoInfoRepository::findAll, "TodoApplicationHelper.findAllTodos");
+        return doWorkForRepository(() -> m_todoInfoRepository.findByCompleted(completed), "TodoApplicationHelper.findTodosByCompleted");
+    }
+
+    public Iterable<TodoInfo> findCompletedTodos()
+    {
+        return doWorkForRepository(m_todoInfoRepository::findCompleted, "TodoApplicationHelper.findCompletedTodos");
+    }
+
+    public Iterable<TodoInfo> findNotCompletedTodos()
+    {
+        return doWorkForRepository(m_todoInfoRepository::findNotCompleted, "TodoApplicationHelper.findNotCompletedTodos");
     }
 
     public Iterable<TodoInfo> findTodosByMonth(int month)
@@ -51,19 +66,16 @@ public class TodoApplicationHelper {
         return findTodoById(id).isPresent();
     }
 
-    public Optional<TodoInfo> findTodoById(long id)
-    {
-        return doWorkForRepository(() -> m_todoInfoRepository.findById(id), "TodoApplicationHelper.findTodoById");
-    }
 
     public TodoInfo saveTodoInfo(TodoInfo todoInfo)
     {
         return doWorkForRepository(() -> m_todoInfoRepository.save(todoInfo), "TodoApplicationHelper.saveTodoInfo");
     }
 
-    public UserInfo saveUserInfo(UserInfo userInfo)
+
+    public ClientRequestInfo saveClientRequestInfo(ClientRequestInfo clientRequestInfo)
     {
-        return doWorkForRepository(() -> m_userInfoRepository.save(userInfo), "TodoApplicationHelper.saveUserInfo");
+        return doWorkForRepository(() -> m_clientRequestInfoRepository.save(clientRequestInfo), "TodoApplicationHelper.saveClientRequestInfo");
     }
 
     //...

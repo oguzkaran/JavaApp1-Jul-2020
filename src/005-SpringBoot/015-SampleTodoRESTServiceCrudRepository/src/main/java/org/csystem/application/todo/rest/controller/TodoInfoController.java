@@ -1,23 +1,29 @@
 package org.csystem.application.todo.rest.controller;
 
+import org.csystem.application.todo.rest.data.entity.ClientRequestInfo;
 import org.csystem.application.todo.rest.dto.TodoInfoDTO;
 import org.csystem.application.todo.rest.service.ITodoApplicationService;
 import org.csystem.util.data.service.DataServiceException;
 import org.csystem.util.exception.ExceptionUtil;
+import org.springframework.context.annotation.Scope;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import javax.servlet.http.HttpServletRequest;
 import java.util.ArrayList;
 
 @RestController
 @RequestMapping("api/todos")
+@Scope("request")
 public class TodoInfoController {
     private final ITodoApplicationService m_todoApplicationService;
+    private final HttpServletRequest m_httpServletRequest;
 
-    public TodoInfoController(ITodoApplicationService todoApplicationService)
+    public TodoInfoController(ITodoApplicationService todoApplicationService, HttpServletRequest httpServletRequest)
     {
         m_todoApplicationService = todoApplicationService;
+        m_httpServletRequest = httpServletRequest;
     }
 
     @GetMapping("/count")
@@ -29,6 +35,9 @@ public class TodoInfoController {
     @GetMapping("/all")
     public Iterable<TodoInfoDTO> findAllTodos() // Veri çok fazlaysa bu şekilde almak doğru değildir. Sadece örnek olarak gösterilmiştir.
     {
+        var clientRequestInfo = new ClientRequestInfo(m_httpServletRequest.getRemoteHost(),  m_httpServletRequest.getLocalPort(), "");
+        m_todoApplicationService.saveClientRequestInfo(clientRequestInfo);
+
         return m_todoApplicationService.findAllTodos();
     }
 
@@ -63,6 +72,25 @@ public class TodoInfoController {
             end = 12;
 
         return m_todoApplicationService.findTodosByMonthsBetween(start, end);
+    }
+
+    @GetMapping
+    public ResponseEntity<Iterable<TodoInfoDTO>> findTodosByCompleted(@RequestParam("completed") boolean completed)
+    {
+        return ExceptionUtil.subscribe(() -> new ResponseEntity<>(m_todoApplicationService.findTodosByCompleted(completed), HttpStatus.OK),
+                ignore -> new ResponseEntity<>(HttpStatus.BAD_REQUEST));
+    }
+
+    @GetMapping("/completeds")
+    public Iterable<TodoInfoDTO> findCompletedTodos()
+    {
+        return m_todoApplicationService.findCompletedTodos();
+    }
+
+    @GetMapping("/notcompleteds")
+    public Iterable<TodoInfoDTO> findNotCompletedTodos()
+    {
+        return m_todoApplicationService.findNotCompletedTodos();
     }
 
     @GetMapping("/starts/months")
@@ -130,6 +158,9 @@ public class TodoInfoController {
     @PostMapping("/save")
     public TodoInfoDTO saveTodoInfoDTO(@RequestBody TodoInfoDTO todoInfoDTO)
     {
+        var clientRequestInfo = new ClientRequestInfo(m_httpServletRequest.getRemoteHost(),  m_httpServletRequest.getRemotePort(), todoInfoDTO.getUsername());
+        m_todoApplicationService.saveClientRequestInfo(clientRequestInfo);
+
         return m_todoApplicationService.saveTodo(todoInfoDTO);
     }
 }
