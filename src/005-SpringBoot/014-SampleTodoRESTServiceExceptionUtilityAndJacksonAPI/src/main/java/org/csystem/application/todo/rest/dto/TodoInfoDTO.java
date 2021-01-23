@@ -1,13 +1,14 @@
 package org.csystem.application.todo.rest.dto;
 
+import com.fasterxml.jackson.annotation.*;
+
 import java.time.LocalDate;
-import java.time.LocalDateTime;
 
 public class TodoInfoDTO {
     private long m_id;
     private String m_username;
     private String m_title;
-    private String m_description;
+    private String m_description = "";
     private LocalDate m_startDate;
     private LocalDate m_expectedEndDate;
     private LocalDate m_endDate;
@@ -28,6 +29,7 @@ public class TodoInfoDTO {
         m_isCompleted = isCompleted;
     }
 
+    @JsonGetter("todoId")
     public long getId()
     {
         return m_id;
@@ -48,50 +50,66 @@ public class TodoInfoDTO {
         m_username = username;
     }
 
+    @JsonGetter("title")
     public String getTitle()
     {
         return m_title;
     }
 
+    @JsonSetter(value = "title", nulls = Nulls.FAIL)
     public void setTitle(String title)
     {
         m_title = title;
     }
 
+    @JsonGetter("description")
     public String getDescription()
     {
         return m_description;
     }
 
+    @JsonSetter(value = "description", nulls = Nulls.SKIP)
     public void setDescription(String description)
     {
         m_description = description;
     }
 
+    @JsonGetter("start")
+    @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "dd/MM/yyyy")
     public LocalDate getStartDate()
     {
         return m_startDate;
     }
 
+
+    @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "dd/MM/yyyy")
     public void setStartDate(LocalDate startDate)
     {
         m_startDate = startDate;
     }
 
+    @JsonGetter("expected")
+    @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "dd/MM/yyyy")
     public LocalDate getExpectedEndDate()
     {
         return m_expectedEndDate;
     }
 
+    @JsonInclude(JsonInclude.Include.NON_NULL)
+    @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "dd/MM/yyyy")
     public void setExpectedEndDate(LocalDate expectedEndDate)
     {
         m_expectedEndDate = expectedEndDate;
     }
 
+    @JsonInclude(JsonInclude.Include.NON_NULL)
+    @JsonGetter("end")
+    @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "dd/MM/yyyy")
     public LocalDate getEndDate()
     {
         return m_endDate;
     }
+
 
     public void setEndDate(LocalDate endDate)
     {

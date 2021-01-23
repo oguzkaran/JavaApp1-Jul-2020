@@ -131,6 +131,7 @@ public class TodoInfoRepository implements ITodoInfoRepository {
         return entity;
     }
 
+    ////////////////////////////////////////
 
 
     @Override
@@ -158,13 +159,11 @@ public class TodoInfoRepository implements ITodoInfoRepository {
     }
 
 
-
     @Override
     public Iterable<TodoInfo> findAllById(Iterable<Long> longs)
     {
         throw new UnsupportedOperationException();
     }
-
 
 
     @Override
