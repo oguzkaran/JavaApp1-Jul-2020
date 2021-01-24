@@ -2,7 +2,7 @@ package org.csystem.application.todo.rest.controller;
 
 import org.csystem.application.todo.rest.data.entity.ClientRequestInfo;
 import org.csystem.application.todo.rest.dto.TodoInfoDTO;
-import org.csystem.application.todo.rest.service.ITodoApplicationService;
+import org.csystem.application.todo.rest.data.service.ITodoApplicationService;
 import org.csystem.util.data.service.DataServiceException;
 import org.csystem.util.exception.ExceptionUtil;
 import org.springframework.context.annotation.Scope;

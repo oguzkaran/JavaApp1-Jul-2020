@@ -3,7 +3,6 @@ package org.csystem.application.todo.rest.data.entity;
 import javax.persistence.*;
 import java.time.LocalDate;
 
-
 @Entity
 @Table(name = "todos")
 public class TodoInfo {

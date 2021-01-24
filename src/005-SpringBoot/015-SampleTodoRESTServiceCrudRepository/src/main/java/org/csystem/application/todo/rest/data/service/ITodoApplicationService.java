@@ -1,7 +1,6 @@
-package org.csystem.application.todo.rest.service;
+package org.csystem.application.todo.rest.data.service;
 
 import org.csystem.application.todo.rest.data.entity.ClientRequestInfo;
-import org.csystem.application.todo.rest.data.entity.TodoInfo;
 import org.csystem.application.todo.rest.dto.TodoInfoDTO;
 
 import java.util.Optional;

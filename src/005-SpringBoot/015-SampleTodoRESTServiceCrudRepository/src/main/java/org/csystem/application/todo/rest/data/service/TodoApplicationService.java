@@ -1,4 +1,4 @@
-package org.csystem.application.todo.rest.service;
+package org.csystem.application.todo.rest.data.service;
 
 import org.csystem.application.todo.rest.data.dal.TodoApplicationHelper;
 import org.csystem.application.todo.rest.data.entity.ClientRequestInfo;
