@@ -14,8 +14,8 @@ public class ClientRequestInfo {
     @Column(name = "host", nullable = false)
     private String m_host;
 
-    @Column(name = "local_port", nullable = false)
-    private int m_localPort;
+    @Column(name = "remote_port", nullable = false)
+    private int m_remotePort;
 
     @Column(name = "username", nullable = false)
     private String m_username;
@@ -26,23 +26,22 @@ public class ClientRequestInfo {
     public ClientRequestInfo()
     {}
 
-
-    public ClientRequestInfo(String host, int localPort, String username)
+    public ClientRequestInfo(String host, int remotePort, String username)
     {
-        this(0, host, username, localPort, LocalDateTime.now());
+        this(0, host, remotePort, username, LocalDateTime.now());
     }
 
-    public ClientRequestInfo(String host, String username, int localPort, LocalDateTime queryTime)
+    public ClientRequestInfo(String host, int remotePort, String username, LocalDateTime queryTime)
     {
-        this(0, host, username, localPort, queryTime);
+        this(0, host, remotePort, username, queryTime);
     }
 
-    public ClientRequestInfo(long id, String host, String username, int localPort, LocalDateTime queryTime)
+    public ClientRequestInfo(long id, String host, int remotePort, String username, LocalDateTime queryTime)
     {
         m_id = id;
         m_host = host;
         m_username = username;
-        m_localPort = localPort;
+        m_remotePort = remotePort;
         m_queryTime = queryTime;
     }
 
@@ -66,14 +65,14 @@ public class ClientRequestInfo {
         m_host = host;
     }
 
-    public int getLocalPort()
+    public int getRemotePort()
     {
-        return m_localPort;
+        return m_remotePort;
     }
 
-    public void setLocalPort(int localPort)
+    public void setRemotePort(int remotePort)
     {
-        m_localPort = localPort;
+        m_remotePort = remotePort;
     }
 
     public void setUsername(String username)

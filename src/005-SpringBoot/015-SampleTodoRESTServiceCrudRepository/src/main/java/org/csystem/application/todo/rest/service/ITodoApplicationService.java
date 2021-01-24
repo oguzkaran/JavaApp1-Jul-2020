@@ -13,6 +13,8 @@ public interface ITodoApplicationService {
     Iterable<TodoInfoDTO> findTodosByCompleted(boolean completed);
     Iterable<TodoInfoDTO> findCompletedTodos();
     Iterable<TodoInfoDTO> findNotCompletedTodos();
+    Iterable<TodoInfoDTO> findTodosNative(int count);
+    Iterable<TodoInfoDTO> findTodos(int count);
     Iterable<TodoInfoDTO> findTodosByMonth(int month);
     Iterable<TodoInfoDTO> findTodosByMonthsBetween(int start, int end);
     Optional<TodoInfoDTO> findTodoById(long id);

@@ -4,6 +4,7 @@ import org.csystem.application.todo.rest.data.entity.ClientRequestInfo;
 import org.csystem.application.todo.rest.data.entity.TodoInfo;
 import org.csystem.application.todo.rest.data.repository.IClientRequestInfoRepository;
 import org.csystem.application.todo.rest.data.repository.ITodoInfoRepository;
+import org.springframework.data.domain.PageRequest;
 import org.springframework.stereotype.Component;
 
 import java.util.Optional;
@@ -14,6 +15,13 @@ import static org.csystem.util.data.DatabaseUtil.doWorkForRepository;
 public class TodoApplicationHelper {
     private final ITodoInfoRepository m_todoInfoRepository;
     private final IClientRequestInfoRepository m_clientRequestInfoRepository;
+
+    private Iterable<TodoInfo> findTodosProc(int count)
+    {
+        var pageRequest = PageRequest.of(0, count);
+
+        return m_todoInfoRepository.findAll(pageRequest).getContent();
+    }
 
     public TodoApplicationHelper(ITodoInfoRepository todoInfoRepository, IClientRequestInfoRepository clientRequestInfoRepository)
     {
@@ -49,6 +57,16 @@ public class TodoApplicationHelper {
     public Iterable<TodoInfo> findNotCompletedTodos()
     {
         return doWorkForRepository(m_todoInfoRepository::findNotCompleted, "TodoApplicationHelper.findNotCompletedTodos");
+    }
+
+    public Iterable<TodoInfo> findTodosNative(int count)
+    {
+        return doWorkForRepository(() -> m_todoInfoRepository.findViaNative(count), "TodoApplicationHelper.findTodosNative");
+    }
+
+    public Iterable<TodoInfo> findTodos(int count)
+    {
+        return doWorkForRepository(() -> findTodosProc(count), "TodoApplicationHelper.findTodos");
     }
 
     public Iterable<TodoInfo> findTodosByMonth(int month)

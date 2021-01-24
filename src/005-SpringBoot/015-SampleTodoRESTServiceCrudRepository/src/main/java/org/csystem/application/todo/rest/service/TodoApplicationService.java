@@ -77,6 +77,18 @@ public class TodoApplicationService implements ITodoApplicationService {
     }
 
     @Override
+    public Iterable<TodoInfoDTO> findTodosNative(int count)
+    {
+        return doWorkForService(() -> getTodoInfoDTO(() -> m_todoApplicationHelper.findTodosNative(count)), "TodoApplicationService.findTodosNative");
+    }
+
+    @Override
+    public Iterable<TodoInfoDTO> findTodos(int count)
+    {
+        return doWorkForService(() -> getTodoInfoDTO(() -> m_todoApplicationHelper.findTodos(count)), "TodoApplicationService.findTodos");
+    }
+
+    @Override
     public Optional<TodoInfoDTO> findTodoById(long id)
     {
         return doWorkForService(() -> m_todoApplicationHelper.findTodoById(id).map(m_todoInfoMapper::todoInfoToTodoInfoDTO), "TodoApplicationService.findTodoById");

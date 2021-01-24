@@ -41,6 +41,24 @@ public class TodoInfoController {
         return m_todoApplicationService.findAllTodos();
     }
 
+    @GetMapping("/todos")
+    public Iterable<TodoInfoDTO> findTodos(@RequestParam(value = "count", required = true, defaultValue = "-1") int count)
+    {
+        if (count <= 0)
+            count = 10;
+
+        return m_todoApplicationService.findTodosNative(count);
+    }
+
+    @GetMapping("/todosp")
+    public Iterable<TodoInfoDTO> findTodosViaPage(@RequestParam(value = "count", required = true, defaultValue = "-1") int count)
+    {
+        if (count <= 0)
+            count = 10;
+
+        return m_todoApplicationService.findTodos(count);
+    }
+
     @GetMapping("/ids")
     public TodoInfoDTO findById(@RequestParam("id") long id)
     {
