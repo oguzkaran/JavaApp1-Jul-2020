@@ -12,12 +12,12 @@ public class TodoInfoDTO {
     private LocalDate m_startDate;
     private LocalDate m_expectedEndDate;
     private LocalDate m_endDate;
-    private boolean m_isCompleted;
+    private boolean m_completed;
 
     public TodoInfoDTO()
     {}
 
-    public TodoInfoDTO(long id, String username, String title, String description, LocalDate startDate, LocalDate expectedEndDate, LocalDate endDate, boolean isCompleted)
+    public TodoInfoDTO(long id, String username, String title, String description, LocalDate startDate, LocalDate expectedEndDate, LocalDate endDate, boolean completed)
     {
         m_id = id;
         m_username = username;
@@ -26,7 +26,7 @@ public class TodoInfoDTO {
         m_startDate = startDate;
         m_expectedEndDate = expectedEndDate;
         m_endDate = endDate;
-        m_isCompleted = isCompleted;
+        m_completed = completed;
     }
 
     @JsonGetter("todoId")
@@ -118,11 +118,11 @@ public class TodoInfoDTO {
 
     public boolean isCompleted()
     {
-        return m_isCompleted;
+        return m_completed;
     }
 
     public void setCompleted(boolean completed)
     {
-        m_isCompleted = completed;
+        m_completed = completed;
     }
 }

@@ -1,15 +1,11 @@
 package org.csystem.application.todo.data.entity;
 
-import lombok.EqualsAndHashCode;
-import lombok.NoArgsConstructor;
-
 import javax.persistence.*;
 import java.util.Set;
 
-@NoArgsConstructor
+
 @Entity
 @Table(name = "users")
-@EqualsAndHashCode(exclude = "todos")
 public class UserInfo {
     @Id
     @Column(name = "username")

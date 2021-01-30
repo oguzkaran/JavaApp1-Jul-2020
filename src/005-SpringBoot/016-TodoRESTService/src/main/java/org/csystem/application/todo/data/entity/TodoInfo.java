@@ -125,4 +125,11 @@ public class TodoInfo {
     {
         this.userInfo = userInfo;
     }
+
+
+    public String getUsername()
+    {
+        return userInfo.getUsername();
+    }
+
 }
