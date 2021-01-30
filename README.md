@@ -10,3 +10,9 @@ KAYNAK GÖSTERMEK KOŞULUYLA HER TÜRLÜ ALINTI YAPILABİLİR
 #stream
 #parallelstream
 #collections
+#jpa
+#hibernate
+#mapstruct
+#retrofit
+#resttemplate
+
