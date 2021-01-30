@@ -15,4 +15,4 @@ KAYNAK GÖSTERMEK KOŞULUYLA HER TÜRLÜ ALINTI YAPILABİLİR
 #mapstruct
 #retrofit
 #resttemplate
-
+#postgresql
