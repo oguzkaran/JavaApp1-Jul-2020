@@ -9,8 +9,10 @@ public class AddressInfo {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "address_info_id")
     private long m_id;
-    @Column(name = "street")
-    private String m_street;
+
+    @Column(name = "street_name", nullable = false)
+    public String m_streetName;
+
     @Column(name = "admin_code2", nullable = false)
     public String m_adminCode2;
 
@@ -22,26 +24,45 @@ public class AddressInfo {
 
     @Column(name = "locality", nullable = false)
     public String m_locality;
+
     @Column(name = "admin_name2", nullable = false)
     public String m_adminName2;
+
     @Column(name = "postal_code", nullable = false)
     public String m_postalCode;
 
     @Column(name = "country_code", nullable = false)
     public String m_countryCode;
+
     @Column(name = "admin_name1", nullable = false)
     public String m_adminName1;
+
     @Column(name = "latitute", nullable = false)
     public String m_latitude;
 
-    public String getStreet()
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "street", nullable = false)
+    private StreetInfo m_streetInfo;
+
+    public long getId()
     {
-        return m_street;
+        return m_id;
     }
 
-    public void setStreet(String street)
+    public void setId(long id)
     {
-        m_street = street;
+        m_id = id;
+    }
+
+
+    public String getStreetName()
+    {
+        return m_streetName;
+    }
+
+    public void setStreetName(String streetName)
+    {
+        m_streetName = streetName;
     }
 
     public String getAdminCode2()
@@ -132,5 +153,15 @@ public class AddressInfo {
     public void setLatitude(String latitude)
     {
         m_latitude = latitude;
+    }
+
+    public StreetInfo getStreetInfo()
+    {
+        return m_streetInfo;
+    }
+
+    public void setStreetInfo(StreetInfo streetInfo)
+    {
+        m_streetInfo = streetInfo;
     }
 }

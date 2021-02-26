@@ -24,12 +24,12 @@ public class StreetNameLookupController {
     @GetMapping("/info")
     public StreetNameLookupViewModel getStreetNames(@RequestParam("q") String query)
     {
-        return subscribe(() -> m_streetNameLookupService.findStreetNames(query), ex -> new StreetNameLookupViewModel());
+        return subscribe(() -> m_streetNameLookupService.findStreets(query), ex -> new StreetNameLookupViewModel());
     }
 
     @GetMapping("/first")
     public Address getFirstStreetName(@RequestParam("q") String query)
     {
-        return subscribe(() -> m_streetNameLookupService.findStreetNames(query).getAddress().get(0), ex -> new Address());
+        return subscribe(() -> m_streetNameLookupService.findStreets(query).getAddress().get(0), ex -> new Address());
     }
 }

@@ -12,6 +12,7 @@ public interface IAddressMapper {
             @Mapping(source ="addressInfo.longitude", target = "lng"),
             @Mapping(source ="addressInfo.postalCode", target = "postalcode"),
             @Mapping(source ="addressInfo.latitude", target = "lat"),
+            @Mapping(source ="addressInfo.streetName", target = "street"),
     })
     Address toAddress(AddressInfo addressInfo);
 
@@ -20,6 +21,7 @@ public interface IAddressMapper {
             @Mapping(source ="address.lng", target = "longitude"),
             @Mapping(source ="address.postalcode", target = "postalCode"),
             @Mapping(source ="address.lat", target = "latitude"),
+            @Mapping(source ="address.street", target = "streetName"),
     })
     AddressInfo toAddressInfo(Address address);
 }
