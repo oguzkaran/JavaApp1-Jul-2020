@@ -16,3 +16,5 @@ KAYNAK GÖSTERMEK KOŞULUYLA HER TÜRLÜ ALINTI YAPILABİLİR
 #retrofit
 #resttemplate
 #postgresql
+#rxjava
+#crudrepository
